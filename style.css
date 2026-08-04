@@ -26,7 +26,7 @@ body {
 .syarat h2 { color: #ff0000; text-align: center; margin-bottom: 8px; }
 h1 { text-align: center; color: #ff0000; margin-bottom: 20px; }
 label { display: block; margin-top: 12px; margin-bottom: 5px; font-weight: bold; }
-input {
+input, select {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
@@ -35,37 +35,7 @@ input {
   color: #fff;
   font-size: 15px;
 }
-.upload-box {
-  position: relative;
-  margin-top: 5px;
-}
-.upload-box input[type="file"] {
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  cursor: pointer;
-  z-index: 2;
-}
-#btnUpload {
-  width:100%; 
-  background:#ff0000; 
-  color:#fff; 
-  border:none; 
-  padding:12px; 
-  border-radius:8px;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
-}
-#namaFile {
-  display: block;
-  font-size: 13px;
-  color: #aaa;
-  margin-top: 8px;
-}
+input[readonly] { background: #333; color: #aaa; }
 button[type="submit"] {
   width: 100%;
   background: #ff0000;
@@ -79,11 +49,4 @@ button[type="submit"] {
   color: #fff;
 }
 button:disabled { background: #555; cursor: not-allowed; }
-#preview { 
-  width: 100%; 
-  margin-top: 10px; 
-  border-radius: 8px; 
-  border: 1px solid #333; 
-  display: none;
-}
 #status { text-align: center; margin-top: 15px; font-weight: bold; }
