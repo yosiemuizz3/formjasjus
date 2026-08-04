@@ -3,58 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Bongkar Zeuz</title>
+    <title>Menu Zeuz Jasjus</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="form-container">
-        <div class="syarat">
-            <h2>SYARAT BONGKAR</h2>
-            <p>1. Minimal 7 Kartu <br>
-               2. Harga 50.000/Kartu - Admin 6.500 <br>
-               3. Data harus benar
-            </p>
+        <div class="menu-tab">
+            <button class="tab-btn active" onclick="showTab('bongkar')">BONGKAR</button>
+            <button class="tab-btn" onclick="showTab('order')">ORDER</button>
         </div>
 
-        <h1>FORM BONGKAR ZEUZ</h1>
+        <!-- FORM BONGKAR -->
+        <div id="bongkar" class="tab-content active">
+            <div class="syarat">
+                <h2>SYARAT BONGKAR</h2>
+                <p>1. Minimal 7 Kartu <br>
+                   2. Harga 50.000/Kartu - Admin 6.500 <br>
+                   3. Data harus benar</p>
+            </div>
+            <h1>FORM BONGKAR ZEUZ</h1>
+            <form id="formZeuz">
+                <label>Player ID</label> <input type="text" id="playerId" required>
+                <label>Jumlah Kartu</label> <input type="number" id="jumlah" required>
+                <label>Total Diterima</label> <input type="text" id="total" readonly>
+                <label>Bank / Ewallet Tujuan</label> 
+                <select id="bank" required><option value="">Pilih Bank</option><option>BCA</option><option>Dana</option><option>OVO</option><option>Gopay</option></select>
+                <label>No Rekening / No Ewallet</label> <input type="text" id="rek" required>
+                <label>Atas Nama</label> <input type="text" id="namaRek" required>
+                <label>No WA Kamu</label> <input type="text" id="wa" required>
+                <button type="submit" id="submitBtn">KIRIM BONGKAR</button>
+                <p id="status"></p>
+            </form>
+        </div>
 
-        <form id="formZeuz">
-            <label for="playerId">Player ID</label>
-            <input type="text" id="playerId" required placeholder="Masukkan Player ID">
-
-            <label for="jumlah">Jumlah Kartu</label>
-            <input type="number" id="jumlah" required placeholder="Minimal 7 kartu">
-
-            <label for="total">Total Diterima</label>
-            <input type="text" id="total" readonly placeholder="Otomatis terhitung">
-
-            <label for="bank">Bank / Ewallet Tujuan</label>
-            <select id="bank" required>
-                <option value="">Pilih Bank</option>
-                <option value="BCA">BCA</option>
-                <option value="BNI">BNI</option>
-                <option value="BRI">BRI</option>
-                <option value="Mandiri">Mandiri</option>
-                <option value="Dana">Dana</option>
-                <option value="OVO">OVO</option>
-                <option value="Gopay">Gopay</option>
-            </select>
-
-            <label for="rek">No Rekening / No Ewallet</label>
-            <input type="text" id="rek" required placeholder="No Rekening">
-
-            <label for="namaRek">Atas Nama</label>
-            <input type="text" id="namaRek" required placeholder="Nama Pemilik Rekening">
-
-            <label for="wa">No WA Kamu</label>
-            <input type="text" id="wa" required placeholder="08xxxxxxxxxx">
-
-            <button type="submit" id="submitBtn">KIRIM DATA KE WA</button>
-            <p id="status"></p>
-        </form>
+        <!-- FORM ORDER -->
+        <div id="order" class="tab-content">
+            <div class="syarat">
+                <h2>SYARAT ORDER</h2>
+                <p>1. Harga 1 Kartu Zeus = Rp 55.000 <br>
+                   2. Minimal Order 1 Kartu <br>
+                   3. Tanpa Admin</p>
+            </div>
+            <h1>FORM ORDER ZEUZ</h1>
+            <form id="formOrder">
+                <label>Player ID</label> <input type="text" id="playerIdOrder" required>
+                <label>Jumlah Kartu Order</label> <input type="number" id="jumlahOrder" required>
+                <label>Total Bayar</label> <input type="text" id="totalOrder" readonly>
+                <label>Metode Bayar</label> 
+                <select id="metodeBayar" required><option value="">Pilih</option><option>Transfer BCA</option><option>Dana</option><option>OVO</option><option>QRIS</option></select>
+                <label>No WA</label> <input type="text" id="waOrder" required>
+                <button type="submit" id="submitOrder">KIRIM ORDER</button>
+                <p id="statusOrder"></p>
+            </form>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
