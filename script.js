@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // KONFIG
+    // KONFIG - UDAH SAYA GANTI NOMOR KAMU
     const HARGA = 50000;
     const ADMIN = 6500;
     const MIN_KARTU = 7;
+    const NOMOR_WA_TUJUAN = '6285743230776'; // NOMOR KAMU
 
     // AMBIL ELEMEN
     const form = document.getElementById('formZeuz');
@@ -12,16 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('submitBtn');
     const status = document.getElementById('status');
 
-    if(!form || !jumlahInput || !totalInput) {
-        console.error("Elemen form tidak ditemukan. Cek ID di HTML");
+    if(!form) {
+        console.error("ID formZeuz tidak ditemukan di HTML");
         return;
     }
 
-    // 1. FUNGSI HITUNG OTOMATIS
     function hitungTotal() {
         const jumlah = parseInt(jumlahInput.value) || 0;
         let total = (jumlah * HARGA) - ADMIN; 
-        
         if (total < 0) total = 0; 
         
         if (jumlah >= MIN_KARTU) {
@@ -40,11 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     jumlahInput.addEventListener('input', hitungTotal);
-    hitungTotal(); // Jalanin pas awal
+    hitungTotal();
 
-    // 2. FUNGSI KIRIM DATA
-    form.addEventListener('submit', async function(e) {
+    // KIRIM KE WA
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         
         const jumlah = parseInt(jumlahInput.value) || 0;
         if (jumlah < MIN_KARTU) {
@@ -52,37 +52,32 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        btn.disabled = true;
-        status.innerText = 'Mengirim data...';
+        const playerId = document.getElementById('playerId').value;
+        const total = totalInput.value;
+        const bank = document.getElementById('bank').value;
+        const rek = document.getElementById('rek').value;
+        const namaRek = document.getElementById('namaRek').value;
+        const wa = document.getElementById('wa').value;
+        const waktu = new Date().toLocaleString("id-ID");
 
-        const data = {
-            waktu: new Date().toLocaleString("id-ID"),
-            playerId: document.getElementById('playerId').value,
-            jumlah: jumlah,
-            total: totalInput.value,
-            bank: document.getElementById('bank').value,
-            rek: document.getElementById('rek').value,
-            namaRek: document.getElementById('namaRek').value,
-            wa: document.getElementById('wa').value
-        };
+        const pesan = `*PENGAJUAN BONGKAR ZEUZ*
+        
+*Waktu:* ${waktu}
+*Player ID:* ${playerId}
+*Jumlah Kartu:* ${jumlah}
+*Total Diterima:* ${total}
 
-        try {
-            await fetch('GANTI_DENGAN_URL_APPS_SCRIPT_BARU_KAMU', {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify(data)
-            });
+*Bank:* ${bank}
+*No Rek:* ${rek}
+*Atas Nama:* ${namaRek}
+*No WA Customer:* ${wa}`;
 
-            status.innerText = '✅ Data berhasil dikirim!';
-            form.reset();
-            hitungTotal(); 
-            
-        } catch (error) {
-            status.innerText = '❌ Gagal kirim. Coba lagi.';
-            console.error('Error:', error);
-        } finally {
-            btn.disabled = false;
-        }
+        const urlWa = `https://wa.me/${NOMOR_WA_TUJUAN}?text=${encodeURIComponent(pesan)}`;
+        window.open(urlWa, '_blank');
+
+        status.innerText = '✅ Mengarahkan ke WhatsApp...';
+        form.reset();
+        hitungTotal(); 
     });
 
 });
