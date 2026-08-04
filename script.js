@@ -1,66 +1,40 @@
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbygEEGS08KKDT1cEUU55aCY257abpc0qfS_phaIPfRzUecgTgRmVNlLVou_rz6aymZr2g/exec";
-const HARGA_KARTU = 50000;
-const BIAYA_ADMIN = 6500;
+document.getElementById('formZeuz').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const status = document.getElementById('status');
 
-const form = document.getElementById('zeusForm');
-const nominal = document.getElementById('nominal');
-const total = document.getElementById('total');
-const status = document.getElementById('status');
-const btnKirim = document.getElementById('btnKirim');
+    btn.disabled = true;
+    status.innerText = 'Mengirim data...';
 
-nominal.addEventListener('input', () => {
-  const jumlah = parseInt(nominal.value);
-  if(jumlah >= 7 && jumlah <= 200){
-    const hitung = (jumlah * HARGA_KARTU) - BIAYA_ADMIN;
-    total.value = "Rp " + hitung.toLocaleString('id-ID');
-  } else {
-    total.value = "";
-  }
-});
+    const data = {
+        waktu: new Date().toLocaleString("id-ID"),
+        playerId: document.getElementById('playerId').value,
+        jumlah: document.getElementById('jumlah').value,
+        total: document.getElementById('total').value,
+        bank: document.getElementById('bank').value,
+        rek: document.getElementById('rek').value,
+        namaRek: document.getElementById('namaRek').value,
+        wa: document.getElementById('wa').value
+    };
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const jumlah = parseInt(nominal.value);
+    try {
+        await fetch('https://script.google.com/macros/s/AKfycbygEEGS08KKDkT1cEUU55aCY257abpc0qFS_phalPfRzUecgTgRmVNILVou_rz6aymZfZg/exec', {
+            method: 'POST',
+            mode: 'no-cors', // INI KUNCINYA
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
 
-  if(jumlah < 7 || jumlah > 200){
-    alert("Jumlah kartu harus antara 7 sampai 200");
-    return;
-  }
-
-  btnKirim.disabled = true;
-  status.innerText = "Mengirim data...";
-
-  const dataKirim = {
-    waktu: new Date().toLocaleString('id-ID'),
-    playerId: form.playerId.value,
-    jumlah: jumlah + " Kartu",
-    total: total.value,
-    bank: form.bank.value,
-    rek: form.rek.value,
-    namaRek: form.namaRek.value,
-    wa: form.wa.value
-  };
-
-  try {
-    const res = await fetch(WEB_APP_URL, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(dataKirim)
-    });
-    
-    const result = await res.json();
-
-    if(result.result === "sukses"){
-      status.innerText = "✅ Data berhasil dikirim! Kami akan proses.";
-      form.reset();
-      total.value = "";
-    } else {
-      status.innerText = "❌ Gagal: " + result.error;
+        status.innerText = '✅ Data berhasil dikirim!';
+        document.getElementById('formZeuz').reset();
+        
+    } catch (error) {
+        status.innerText = '❌ Gagal kirim. Coba lagi.';
+        console.error('Error:', error);
+    } finally {
+        btn.disabled = false;
     }
-    btnKirim.disabled = false;
-    
-  } catch(err) {
-    status.innerText = "❌ Error: Gagal kirim. Cek koneksi.";
-    btnKirim.disabled = false;
-  }
 });
