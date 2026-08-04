@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Bongkar Zeuz</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #0f172a; color: #fff; padding: 20px; display: flex; justify-content: center; }
-       .container { background: #1e293b; padding: 25px; border-radius: 12px; width: 100%; max-width: 400px; }
-        h2 { text-align: center; margin-bottom: 20px; color: #38bdf8; }
-        label { display: block; margin-top: 12px; margin-bottom: 5px; font-size: 14px; }
-        input, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; box-sizing: border-box; }
-        input[readonly] { background: #334155; }
-        button { width: 100%; padding: 12px; margin-top: 20px; background: #22c55e; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        button:disabled { background: #475569; cursor: not-allowed; }
-        #status { text-align: center; margin-top: 15px; font-size: 14px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h2>FORM BONGKAR ZEUZ</h2>
-        <form id="formZeuz">
+    <div class="form-container">
+        <div class="syarat">
+            <h2>SYARAT BONGKAR</h2>
+            <p>1. Minimal 7 Kartu <br>
+               2. Harga 50.000/Kartu - Admin 6.500 <br>
+               3. Data harus benar
+            </p>
+        </div>
 
+        <h1>FORM BONGKAR ZEUZ</h1>
+
+        <form id="formZeuz">
             <label for="playerId">Player ID</label>
             <input type="text" id="playerId" required placeholder="Masukkan Player ID">
 
@@ -31,7 +29,7 @@
             <label for="total">Total Diterima</label>
             <input type="text" id="total" readonly placeholder="Otomatis terhitung">
 
-            <label for="bank">Bank Tujuan</label>
+            <label for="bank">Bank / Ewallet Tujuan</label>
             <select id="bank" required>
                 <option value="">Pilih Bank</option>
                 <option value="BCA">BCA</option>
@@ -52,7 +50,7 @@
             <label for="wa">No WA Kamu</label>
             <input type="text" id="wa" required placeholder="08xxxxxxxxxx">
 
-            <button type="submit" id="submitBtn">KIRIM DATA</button>
+            <button type="submit" id="submitBtn">KIRIM DATA KE WA</button>
             <p id="status"></p>
         </form>
     </div>
