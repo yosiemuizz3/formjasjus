@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Bongkar Zeus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <div class="syarat">
+      <h2>📌 SYARAT & KETENTUAN</h2>
+      <p>•••••••</p>
+      <p><b>• Syarat harga</b>: Rp 50.000 / 1 Kartu Zeus</p>
+      <p><b>• Biaya admin</b>: Rp 6.500</p>
+      <p><b>• Minim Bongkar</b>: 7 Kartu Zeus</p>
+      <p><b>• Batas Maksimal Bongkar</b>: 200 Kartu Zeus</p>
+      <p><i>(MOHON DI ISI DENGAN BENAR)</i></p>
+    </div>
+
+    <h1>📁 ISI FORMULIR</h1>
+    <form id="zeusForm">
+      <label>1. Player ID</label>
+      <input type="text" id="playerId" name="playerId" placeholder="Contoh: 12345678" required>
+
+      <label>2. Nominal Bongkar / Jumlah Kartu</label>
+      <input type="number" id="nominal" name="nominal" placeholder="Min 7, Max 200" min="7" max="200" required>
+
+      <label>Total</label>
+      <input type="text" id="total" name="total" readonly placeholder="Otomatis: (Kartu x 50000) - 6500">
+
+      <label>3. Nama Bank</label>
+      <input type="text" id="bank" name="bank" placeholder="Contoh: BCA" required>
+
+      <label>4. Nomor Rekening</label>
+      <input type="text" id="norek" name="norek" placeholder="Contoh: 1234567890" required>
+
+      <label>5. Nama Rekening</label>
+      <input type="text" id="an" name="an" placeholder="Contoh: BUDI SANTOSO" required>
+
+      <label>6. Nomor WhatsApp</label>
+      <input type="tel" id="wa" name="wa" placeholder="Contoh: 08xxxxxxxxxx" required>
+
+      <button type="submit" id="btnKirim">KIRIM DATA</button>
+      <p id="status"></p>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
