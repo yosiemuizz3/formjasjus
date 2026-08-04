@@ -1,0 +1,89 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0d0d0d;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  background: #1a1a1a;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #ff0000;
+}
+.syarat {
+  background: #222;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.syarat h2 { color: #ff0000; text-align: center; margin-bottom: 8px; }
+h1 { text-align: center; color: #ff0000; margin-bottom: 20px; }
+label { display: block; margin-top: 12px; margin-bottom: 5px; font-weight: bold; }
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #222;
+  color: #fff;
+  font-size: 15px;
+}
+.upload-box {
+  position: relative;
+  margin-top: 5px;
+}
+.upload-box input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+#btnUpload {
+  width:100%; 
+  background:#ff0000; 
+  color:#fff; 
+  border:none; 
+  padding:12px; 
+  border-radius:8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+#namaFile {
+  display: block;
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 8px;
+}
+button[type="submit"] {
+  width: 100%;
+  background: #ff0000;
+  border: none;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+}
+button:disabled { background: #555; cursor: not-allowed; }
+#preview { 
+  width: 100%; 
+  margin-top: 10px; 
+  border-radius: 8px; 
+  border: 1px solid #333; 
+  display: none;
+}
+#status { text-align: center; margin-top: 15px; font-weight: bold; }
