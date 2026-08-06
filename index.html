@@ -3,35 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Zeuz Jasjus</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Menu ZEUZ JASJUS Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #080a0f;
+            --card-bg: rgba(18, 22, 31, 0.95);
+            --gold-primary: #ffb703;
+            --gold-secondary: #fb8500;
+            --gold-glow: rgba(254, 150, 0, 0.4);
+            --text-main: #f8f9fa;
+            --text-sub: #94a3b8;
+            --border-glow: rgba(255, 183, 3, 0.25);
+            --input-bg: #0d1117;
+            --status-open: #00ff66;
+            --status-closed: #ff4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% -20%, #1e293b, var(--bg-color));
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        /* RUNNING ANNOUNCEMENT */
+        .marquee-box {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 183, 3, 0.1);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            animation: marquee 14s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px var(--gold-glow);
+            width: 100%;
+            max-width: 480px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            position: relative;
+        }
+
+        /* BRANDING & OPERATIONAL STATUS BADGE */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--gold-primary);
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .brand-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: linear-gradient(to right, #fff, var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .store-status-badge {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .store-status-badge.open {
+            background: rgba(0, 255, 102, 0.15);
+            border: 1px solid var(--status-open);
+            color: var(--status-open);
+        }
+
+        .store-status-badge.closed {
+            background: rgba(255, 68, 68, 0.15);
+            border: 1px solid var(--status-closed);
+            color: var(--status-closed);
+        }
+
+        /* TAB MENU */
+        .menu-tab {
+            display: flex;
+            gap: 8px;
+            background: #090c10;
+            padding: 5px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-sub);
+            font-weight: 700;
+            font-size: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            color: #000;
+            box-shadow: 0 4px 15px var(--gold-glow);
+        }
+
+        .tab-content {
+            display: none;
+            animation: slideUp 0.35s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .syarat {
+            background: rgba(255, 183, 3, 0.05);
+            border: 1px dashed var(--gold-primary);
+            padding: 12px 14px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .syarat h2 {
+            font-size: 12px;
+            color: var(--gold-primary);
+            margin-bottom: 4px;
+        }
+
+        .syarat p {
+            font-size: 11px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-sub);
+            text-transform: uppercase;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 11px 14px;
+            background: var(--input-bg);
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        input[readonly] {
+            background: #161e2e;
+            color: #38bdf8;
+            font-weight: bold;
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        /* QUICK SELECTION CHIPS */
+        .chip-container {
+            display: flex;
+            gap: 6px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+
+        .chip-btn {
+            background: #161e2e;
+            border: 1px solid #2d3748;
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chip-btn:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+
+        button[type="submit"] {
+            margin-top: 10px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+            color: #000;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px var(--gold-glow);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(254, 150, 0, 0.6);
+        }
+
+        button[type="submit"]:disabled {
+            background: #334155 !important;
+            color: #94a3b8 !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        /* WA FLOAT BUTTON */
+        .wa-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 100;
+        }
+
+        .trust-footer {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 10px;
+            color: var(--text-sub);
+        }
+
+        #status, #statusOrder {
+            font-size: 11px;
+            text-align: center;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- RUNNING ANNOUNCEMENT -->
+    <div class="marquee-box">
+        <span class="marquee-text">⚡ LAYANAN BONGKAR & ORDER BUKA JAM 09.00 - 23.00 WITA | PROSES KILAT 1-15 MENIT ⚡</span>
+    </div>
+
     <div class="form-container">
+        <!-- BRANDING HEADER WITH JAM OPERASIONAL STATUS -->
+        <div class="brand-header">
+            <div class="brand-badge">👑</div>
+            <div class="brand-title">MC STORE</div>
+            <div id="storeBadge" class="store-status-badge open">🟢 BUKA (09.00 - 23.00)</div>
+        </div>
+
         <div class="menu-tab">
-            <button class="tab-btn active" onclick="showTab('bongkar')">BONGKAR</button>
-            <button class="tab-btn" onclick="showTab('order')">ORDER</button>
+            <button class="tab-btn active" onclick="showTab('bongkar', this)">⚡ BONGKAR</button>
+            <button class="tab-btn" onclick="showTab('order', this)">🛒 ORDER</button>
         </div>
 
         <!-- FORM BONGKAR -->
         <div id="bongkar" class="tab-content active">
             <div class="syarat">
-                <h2>SYARAT BONGKAR</h2>
-                <p>1. Minimal 7 Kartu <br>
-                   2. Harga 50.000/Kartu - Admin 6.500 <br>
-                   3. Data harus benar</p>
+                <h2>📜 SYARAT BONGKAR</h2>
+                <p>
+                    • Minimal transaksi 7 Kartu<br>
+                    • Harga Rp 50.000/Kartu (Admin Rp 6.500)<br>
+                    • Pastikan data Rekening/E-Wallet valid
+                </p>
             </div>
-            <h1>FORM BONGKAR ZEUZ</h1>
+
             <form id="formZeuz">
-                <label>Player ID</label> <input type="text" id="playerId" required>
-                <label>Jumlah Kartu</label> <input type="number" id="jumlah" required>
-                <label>Total Diterima</label> <input type="text" id="total" readonly>
-                <label>Bank / Ewallet Tujuan</label> 
-                <select id="bank" required><option value="">Pilih Bank</option><option>BCA</option><option>Dana</option><option>OVO</option><option>Gopay</option></select>
-                <label>No Rekening / No Ewallet</label> <input type="text" id="rek" required>
-                <label>Atas Nama</label> <input type="text" id="namaRek" required>
-                <label>No WA Kamu</label> <input type="text" id="wa" required>
-                <button type="submit" id="submitBtn">KIRIM BONGKAR</button>
+                <div class="input-group">
+                    <label for="playerId">Player ID</label>
+                    <input type="text" id="playerId" placeholder="Masukkan ID Akun Game" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="jumlah">Jumlah Kartu</label>
+                    <input type="number" id="jumlah" placeholder="Min. 7 Kartu" required>
+                    <div class="chip-container">
+                        <span class="chip-btn" onclick="setJumlah('jumlah', 7)">7 Kartu</span>
+                        <span class="chip-btn" onclick="setJumlah('jumlah', 10)">10 Kartu</span>
+                        <span class="chip-btn" onclick="setJumlah('jumlah', 20)">20 Kartu</span>
+                        <span class="chip-btn" onclick="setJumlah('jumlah', 50)">50 Kartu</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="total">Total Diterima (Bersih)</label>
+                    <input type="text" id="total" placeholder="Otomatis terhitung" readonly>
+                </div>
+
+                <div class="input-group">
+                    <label for="bank">Bank / E-Wallet Tujuan</label>
+                    <select id="bank" required>
+                        <option value="">-- Pilih Pembayaran --</option>
+                        <option>BCA</option>
+                        <option>DANA</option>
+                        <option>OVO</option>
+                        <option>GOPAY</option>
+                        <option>SHOPEEPAY</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="rek">No. Rekening / E-Wallet</label>
+                    <input type="text" id="rek" placeholder="Contoh: 08xxxxxxxx / 1234xxxx" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="namaRek">Atas Nama Rekening</label>
+                    <input type="text" id="namaRek" placeholder="Nama pemilik akun bank" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="wa">No. WhatsApp Aktif</label>
+                    <input type="text" id="wa" placeholder="08xxxxxxxxxx" required>
+                </div>
+
+                <button type="submit" id="submitBtn">🚀 PERMINTAAN BONGKARAN</button>
                 <p id="status"></p>
             </form>
         </div>
@@ -39,24 +416,123 @@
         <!-- FORM ORDER -->
         <div id="order" class="tab-content">
             <div class="syarat">
-                <h2>SYARAT ORDER</h2>
-                <p>1. Harga 1 Kartu Zeus = Rp 55.000 <br>
-                   2. Minimal Order 1 Kartu <br>
-                   3. Tanpa Admin</p>
+                <h2>💎 SYARAT ORDER</h2>
+                <p>
+                    • Harga 1 Kartu Zeus = Rp 55.000<br>
+                    • Minimal Pembelian 1 Kartu<br>
+                    • Bebas Biaya Admin (0 Rupiah)
+                </p>
             </div>
-            <h1>FORM ORDER ZEUZ</h1>
+
             <form id="formOrder">
-                <label>Player ID</label> <input type="text" id="playerIdOrder" required>
-                <label>Jumlah Kartu Order</label> <input type="number" id="jumlahOrder" required>
-                <label>Total Bayar</label> <input type="text" id="totalOrder" readonly>
-                <label>Metode Bayar</label> 
-                <select id="metodeBayar" required><option value="">Pilih</option><option>Transfer BCA</option><option>Dana</option><option>OVO</option><option>QRIS</option></select>
-                <label>No WA</label> <input type="text" id="waOrder" required>
-                <button type="submit" id="submitOrder">KIRIM ORDER</button>
+                <div class="input-group">
+                    <label for="playerIdOrder">Player ID</label>
+                    <input type="text" id="playerIdOrder" placeholder="Masukkan ID Akun Game" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="jumlahOrder">Jumlah Order Kartu</label>
+                    <input type="number" id="jumlahOrder" placeholder="Min. 1 Kartu" required>
+                    <div class="chip-container">
+                        <span class="chip-btn" onclick="setJumlah('jumlahOrder', 1)">1 Kartu</span>
+                        <span class="chip-btn" onclick="setJumlah('jumlahOrder', 5)">5 Kartu</span>
+                        <span class="chip-btn" onclick="setJumlah('jumlahOrder', 10)">10 Kartu</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="totalOrder">Total Pembayaran</label>
+                    <input type="text" id="totalOrder" placeholder="Otomatis terhitung" readonly>
+                </div>
+
+                <div class="input-group">
+                    <label for="metodeBayar">Metode Pembayaran</label>
+                    <select id="metodeBayar" required>
+                        <option value="">-- Pilih Pembayaran --</option>
+                        <option>Transfer BCA</option>
+                        <option>DANA</option>
+                        <option>OVO</option>
+                        <option>GOPAY</option>
+                        <option>QRIS (All Payment)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="waOrder">No. WhatsApp Aktif</label>
+                    <input type="text" id="waOrder" placeholder="08xxxxxxxxxx" required>
+                </div>
+
+                <button type="submit" id="submitOrder">💳 KIRIM ORDER</button>
                 <p id="statusOrder"></p>
             </form>
         </div>
+
+        <div class="trust-footer">
+            <div>⚡ Jam Buka 09.00-23.00</div>
+            <div>🔒 100% Safe</div>
+            <div>🟢 Fast Admin</div>
+        </div>
     </div>
+
+    <!-- FLOATING WHATSAPP BUTTON (NOMOR SUDAH TERPASANG) -->
+    <a href="https://wa.me/6285743230776" class="wa-float" target="_blank">
+        💬 Chat Admin
+    </a>
+
     <script src="script.js"></script>
+    <script>
+        // FUNGSI CEK JAM OPERASIONAL (09.00 - 23.00)
+        function checkStoreStatus() {
+            const now = new Date();
+            const currentHour = now.getHours();
+
+            const badge = document.getElementById("storeBadge");
+            const btnBongkar = document.getElementById("submitBtn");
+            const btnOrder = document.getElementById("submitOrder");
+            const statusText = document.getElementById("status");
+            const statusOrderText = document.getElementById("statusOrder");
+
+            const isOpen = currentHour >= 9 && currentHour < 23;
+
+            if (isOpen) {
+                badge.className = "store-status-badge open";
+                badge.innerHTML = "🟢 BUKA (09.00 - 23.00)";
+                btnBongkar.disabled = false;
+                btnOrder.disabled = false;
+            } else {
+                badge.className = "store-status-badge closed";
+                badge.innerHTML = "🔴 CLOSED (BUKA 09.00)";
+                btnBongkar.disabled = true;
+                btnOrder.disabled = true;
+                btnBongkar.innerText = "STORE SEDANG TUTUP";
+                btnOrder.innerText = "STORE SEDANG TUTUP";
+                statusText.style.color = "#ff4444";
+                statusText.innerText = "Maaf, toko sedang tutup. Silakan kembali jam 09.00 WITA.";
+                statusOrderText.style.color = "#ff4444";
+                statusOrderText.innerText = "Maaf, toko sedang tutup. Silakan kembali jam 09.00 WITA.";
+            }
+        }
+
+        function showTab(tabName, btnElement) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(content => content.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        function setJumlah(inputId, val) {
+            const input = document.getElementById(inputId);
+            input.value = val;
+            input.dispatchEvent(new Event('input'));
+        }
+
+        window.onload = function() {
+            checkStoreStatus();
+        };
+    </script>
 </body>
 </html>
